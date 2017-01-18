@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     uglify: {
       options: {
-        banner: '/*! \nAuthor: <%= pkg.author %>\nSource: <%= pkg.repository.url %>\nDate: <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> \n*/\n',
+        banner: '/*! \nAuthor: <%= pkg.author.name %>\nSource: <%= pkg.repository.url %>\nDate: <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> \n*/\n',
         footer:'\n',
         beautify: {
           ascii_only: true
@@ -23,19 +23,19 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-        'src/js/wgs2mars.min.js': ['src/js/wgs2mars.js']
+        'lib/wgs2mars.min.js': ['lib/wgs2mars.js']
       }
       }
     },
     jshint: {
-      files: ['src/js/wgs2mars.js'],
+      files: ['lib/wgs2mars.js'],
       options: {
         "jshintrc": ".jshintrc"
       }
     },
     watch: {
       scripts: {
-        files: ['src/js/*.js', '!src/js/*.min.js'],
+        files: ['lib/*.js', '!lib/*.min.js'],
         tasks: ['build']
       }
     },
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build', ['uglify']);
+  grunt.registerTask('build', ['jshint','uglify']);
 
   grunt.registerTask('default', ['build', 'watch']);
 };

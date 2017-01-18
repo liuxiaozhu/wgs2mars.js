@@ -1,21 +1,41 @@
-# 地球坐标系 (WGS-84)到火星坐标系 (GCJ-02) Javascript版 #
+# 地球坐标系 (WGS-84)到火星坐标系 (GCJ-02) Javascript版 #[![Build Status](https://travis-ci.org/hiwanz/wgs2mars.js.svg?branch=master)](https://travis-ci.org/hiwanz/wgs2mars.js)
 
 ##背景
 第一次开发跟地图相关的应用，一开始定位获得经纬度什么的还比较顺利，直到要在地图上显示出来的时候发现位置标记跟理想的不同，虽已提前了解也预料到，但本以为某某地图会提供相关的API实现，翻了一个晚上文档都没有看到，于是就只能自己动手寻找相关算法实现，貌似没有找到Javascript版本，于是有了该移植版本。
+
+
+##查看示例
+
+若已经安装了nodejs，可以在命令行下切换到项目目录执行
+
+    npm start
+
+然后访问：[http://127.0.0.1:3000/demo](http://127.0.0.1:3000/demo)，允许浏览器定位，查看纠偏效果。
+
+若未安装nodejs，可以直接到demo目录下用浏览器打开index.html文件，查看默认设置的坐标纠偏效果。
 
 ##快速开始
 
 引入脚本
 
-	<script src="src/js/wgs2mars.min.js"></script>
+    <script src="lib/wgs2mars.min.js"></script>
 
 调用代码（参数分别为经度和纬度）;
 
-	var gcjloc = transformFromWGSToGCJ(119.3122312,26.0240049);
+    var gcjloc = transformFromWGSToGCJ(119.3122312,26.0240049);
 
 返回GCJ-02坐标对象
 
-	｛lng: 119.31705425869873, lat: 26.02096344048847｝
+    {lng: 119.31705425869873, lat: 26.02096344048847}
+
+可通过npm install下载作为node模块引入
+
+    npm install wgs2mars --save-dev
+
+然后在项目中引入
+    
+    var transform = require('wgs2mars');
+    var gcjloc = transform(119.3122312,26.0240049);// 返回{lng: 119.31705425869873, lat: 26.02096344048847}
 
 ## 致谢
 
